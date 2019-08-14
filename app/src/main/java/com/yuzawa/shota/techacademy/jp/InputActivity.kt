@@ -71,7 +71,6 @@ class InputActivity : AppCompatActivity() {
         // Spinnerの設定
         reloadListView3()
 // 課題追加箇所　end
-
         // ActionBarを設定する
         val toolbar = findViewById<View>(R.id.toolbar) as Toolbar
         setSupportActionBar(toolbar)
@@ -175,7 +174,6 @@ class InputActivity : AppCompatActivity() {
         mRealm2 = Realm.getDefaultInstance()
         var ids = category_edit_text.getSelectedItemPosition();
         var category = mRealm2.where(Category::class.java).equalTo("id", ids).findFirst()
-        mRealm2.close()
 // カテゴリ設定箇所 end
 
         mTask!!.title = title
@@ -187,8 +185,8 @@ class InputActivity : AppCompatActivity() {
 
         realm.copyToRealmOrUpdate(mTask!!)
         realm.commitTransaction()
-
         realm.close()
+
         val resultIntent = Intent(applicationContext, TaskAlarmReceiver::class.java)
         resultIntent.putExtra(EXTRA_TASK, mTask!!.id)
         val resultPendingIntent = PendingIntent.getBroadcast(
@@ -206,7 +204,6 @@ class InputActivity : AppCompatActivity() {
     private fun reloadListView3(){
         // Realmの設定
         mRealm2 = Realm.getDefaultInstance()
-        mRealm2.addChangeListener(mRealmListener)
 
         var spinnerItems = arrayListOf<String>()
         var spinnerItems2 = listOf<String>()
@@ -235,7 +232,7 @@ class InputActivity : AppCompatActivity() {
         }
         spinnerItems2 = (spinnerItems).distinct()
 
-        mRealm2.close()
+//        mRealm2.close()
 
         var adapter = ArrayAdapter(applicationContext, android.R.layout.simple_spinner_item, spinnerItems2)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -247,5 +244,11 @@ class InputActivity : AppCompatActivity() {
         super.onDestroy()
         mRealm2.close()
      }
+
+    override fun onResume(){
+        super.onResume()
+        mRealm2.addChangeListener(mRealmListener)
+    }
+
 // 課題追加箇所　end
 }

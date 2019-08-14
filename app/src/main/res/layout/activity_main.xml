@@ -12,29 +12,29 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-        <!-->テキスト検索
         <Spinner
                 android:id="@+id/category_search"
-                android:layout_width="300dp"
-                android:layout_height="50dp"/>        <!-->
-
-        <EditText
-                android:id="@+id/category_search"
-                android:inputType="text"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"/>
+                android:layout_width="250dp"
+                android:layout_height="100dp"/>
         <Button
                 android:id="@+id/category_search_on"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:layout_toRightOf="@+id/category_search"
-                android:hint="検索"/>
+                android:text="検索" android:textColor="@android:color/black"/>
+        <Button
+                android:id="@+id/category_search_reset"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_toRightOf="@+id/category_search"
+                android:layout_below="@+id/category_search_on"
+                android:text="全件検索"/>
 
         <ListView
                 android:id="@+id/listView1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/category_search"/>
+                android:layout_below="@+id/category_search_reset"/>
 
     </RelativeLayout>
 

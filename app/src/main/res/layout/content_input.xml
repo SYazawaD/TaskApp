@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="タイトル" />
-    <EditText
+    <Spinner
             android:id="@+id/category_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -53,5 +53,12 @@
             android:layout_below="@id/times_button"
             android:layout_alignParentRight="true"
             android:text="決定" />
+    <Button
+            android:id="@+id/input_category_button"
+            android:layout_width="96dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/done_button"
+            android:layout_alignParentRight="true"
+            android:text="カテゴリ追加" />
 
 </RelativeLayout>

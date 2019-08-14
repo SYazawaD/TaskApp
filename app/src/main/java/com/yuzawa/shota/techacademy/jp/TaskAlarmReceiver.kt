@@ -37,11 +37,12 @@ class TaskAlarmReceiver : BroadcastReceiver() {
         val taskId = intent!!.getIntExtra(EXTRA_TASK, -1)
         val realm = Realm.getDefaultInstance()
         val task = realm.where(Task::class.java).equalTo("id", taskId).findFirst()
+        var category = task!!.category!!.category_for
 
         // タスクの情報を設定する
         builder.setTicker(task!!.title)   // 5.0以降は表示されない
         builder.setContentTitle(task.title)
-        builder.setContentText(task.contents)
+        builder.setContentText("カテゴリ:" + category +"　　内容:" + task.contents)
 
         // 通知をタップしたらアプリを起動するようにする
         val startAppIntent = Intent(context, MainActivity::class.java)
